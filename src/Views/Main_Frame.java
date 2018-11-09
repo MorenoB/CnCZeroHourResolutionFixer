@@ -6,6 +6,8 @@
 package Views;
 
 import Utils.Action;
+import Utils.StringExtensions;
+import java.awt.Dimension;
 
 /**
  *
@@ -14,12 +16,18 @@ import Utils.Action;
 public class Main_Frame extends javax.swing.JFrame {
 
     public static Action onMatchScreenClicked = new Action();
+    public static Action<Dimension> onApplyClicked = new Action();
     
     /**
      * Creates new form Main_Frame
      */
     public Main_Frame() {
         initComponents();
+    }
+    
+    public void SetStatusText(String text)
+    {
+        status_label.setText(text);
     }
 
     /**
@@ -31,7 +39,15 @@ public class Main_Frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        intTextFieldVerifier = new Utils.IntTextFieldVerifier();
         MatchScreen_Button = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        width_field = new javax.swing.JTextField();
+        height_field = new javax.swing.JTextField();
+        width_label = new javax.swing.JLabel();
+        height_label = new javax.swing.JLabel();
+        apply_button = new javax.swing.JButton();
+        status_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,20 +58,89 @@ public class Main_Frame extends javax.swing.JFrame {
             }
         });
 
+        width_field.setText("0");
+        width_field.setInputVerifier(intTextFieldVerifier);
+        width_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                width_fieldActionPerformed(evt);
+            }
+        });
+
+        height_field.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        height_field.setText("0");
+        height_field.setInputVerifier(intTextFieldVerifier);
+        height_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                height_fieldActionPerformed(evt);
+            }
+        });
+
+        width_label.setText("Width");
+
+        height_label.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        height_label.setText("Height");
+
+        apply_button.setText("Apply");
+        apply_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apply_buttonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(width_label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(width_field, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(apply_button, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(height_label, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                    .addComponent(height_field)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(width_label)
+                    .addComponent(height_label))
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(width_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(height_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(apply_button))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        status_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        status_label.setText("Status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(MatchScreen_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MatchScreen_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                    .addComponent(status_label, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(167, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(MatchScreen_Button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(status_label)
                 .addContainerGap())
         );
 
@@ -67,8 +152,36 @@ public class Main_Frame extends javax.swing.JFrame {
            onMatchScreenClicked.broadcast(evt);
     }//GEN-LAST:event_MatchScreen_ButtonActionPerformed
 
+    private void apply_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apply_buttonActionPerformed
+        if(onApplyClicked != null)
+        {
+            int width = StringExtensions.ToInt(width_field.getText());
+            int height = StringExtensions.ToInt(height_field.getText());
+            
+            Dimension dimensionObj = new Dimension(width, height);
+            onApplyClicked.broadcast(dimensionObj);
+        }
+            
+    }//GEN-LAST:event_apply_buttonActionPerformed
+
+    private void width_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_width_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_width_fieldActionPerformed
+
+    private void height_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_height_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_height_fieldActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MatchScreen_Button;
+    private javax.swing.JButton apply_button;
+    private javax.swing.JTextField height_field;
+    private javax.swing.JLabel height_label;
+    private Utils.IntTextFieldVerifier intTextFieldVerifier;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel status_label;
+    private javax.swing.JTextField width_field;
+    private javax.swing.JLabel width_label;
     // End of variables declaration//GEN-END:variables
 }
